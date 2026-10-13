@@ -1,0 +1,5 @@
+modelo,cv_f1_macro_media,cv_f1_macro_desv,test_accuracy,test_f1_macro,latencia_ms_por_lectura,tamano_kb
+Regresion logistica,0.9458,0.0051,0.9533,0.9531,0.276,1.3
+Arbol de decision,0.9265,0.0068,0.9267,0.9268,0.083,5.6
+Random Forest,0.939,0.005,0.9467,0.9466,5.27,616.7
+Gradient Boosting,0.9357,0.0066,0.9527,0.9526,3.287,683.8
