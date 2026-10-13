@@ -1,0 +1,16 @@
+# Prometheus en la laptop (conectada al switch). Ajusta las IPs si cambiaste el plan de red.
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  # Métricas de cada nodo (CPU, RAM, temperatura, uptime). Requiere node_exporter en cada nodo.
+  - job_name: nodos
+    static_configs:
+      - targets: ["192.168.100.10:9100", "192.168.100.11:9100", "192.168.100.12:9100"]
+
+  # Métricas del servicio de inferencia vía NodePort. Cada petición cae en uno de los pods;
+  # las series llevan las etiquetas pod y node, así se ve cuál deja de responder.
+  - job_name: inferencia
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["192.168.100.11:30080", "192.168.100.12:30080"]
