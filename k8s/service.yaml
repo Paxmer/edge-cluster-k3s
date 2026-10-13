@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: edge-infer
+  namespace: edge
+  labels:
+    app: edge-infer
+spec:
+  type: NodePort            # accesible en la IP de cualquier nodo, puerto 30080
+  # Local: cada nodo responde SOLO con su pod local y no lo reenvia a un pod de otro nodo.
+  # Asi, si el pod de un worker cae, kube-proxy no sigue mandando ~50 % del trafico a un pod
+  # muerto (lo que se midio con la politica por defecto, "Cluster"). Contras: las peticiones a
+  # un nodo SIN pod se pierden (por eso el cliente usa solo las IP de los workers y rota), y
+  # al volver un worker el pod no regresa solo (kubectl -n edge rollout restart deploy/edge-infer).
+  # Medido en la serie A/B del informe: con Local no se perdio ninguna peticion; con Cluster, 11 a 13 por corrida.
+  externalTrafficPolicy: Local
+  selector:
+    app: edge-infer
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http
+      nodePort: 30080
