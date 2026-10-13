@@ -1,0 +1,114 @@
+{
+  "advertencia": "Datos SINTETICOS generados con edgekit.signals; no son mediciones reales.",
+  "modelo_elegido": "Regresion logistica",
+  "criterio_de_eleccion": "mayor F1 macro en validacion cruzada (5 folds); desempate por menor tamano",
+  "n_lecturas": 6000,
+  "n_por_clase": 2000,
+  "seed": 42,
+  "entrenamiento": 4500,
+  "prueba": 1500,
+  "test_accuracy": 0.9533333333333334,
+  "reporte_por_clase": {
+    "normal": {
+      "precision": 0.9644970414201184,
+      "recall": 0.978,
+      "f1-score": 0.971201588877855,
+      "support": 500.0
+    },
+    "desgaste": {
+      "precision": 0.9442148760330579,
+      "recall": 0.914,
+      "f1-score": 0.9288617886178862,
+      "support": 500.0
+    },
+    "falla_inminente": {
+      "precision": 0.9508840864440079,
+      "recall": 0.968,
+      "f1-score": 0.9593657086223984,
+      "support": 500.0
+    },
+    "accuracy": 0.9533333333333334,
+    "macro avg": {
+      "precision": 0.953198667965728,
+      "recall": 0.9533333333333333,
+      "f1-score": 0.9531430287060466,
+      "support": 1500.0
+    },
+    "weighted avg": {
+      "precision": 0.9531986679657282,
+      "recall": 0.9533333333333334,
+      "f1-score": 0.9531430287060466,
+      "support": 1500.0
+    }
+  },
+  "matriz_confusion": {
+    "filas_real_columnas_predicho": [
+      "normal",
+      "desgaste",
+      "falla_inminente"
+    ],
+    "valores": [
+      [
+        489,
+        11,
+        0
+      ],
+      [
+        18,
+        457,
+        25
+      ],
+      [
+        0,
+        16,
+        484
+      ]
+    ]
+  },
+  "importancia_caracteristicas": null,
+  "comparacion_modelos": [
+    {
+      "modelo": "Regresion logistica",
+      "cv_f1_macro_media": 0.9458,
+      "cv_f1_macro_desv": 0.0051,
+      "test_accuracy": 0.9533,
+      "test_f1_macro": 0.9531,
+      "latencia_ms_por_lectura": 0.276,
+      "tamano_kb": 1.3
+    },
+    {
+      "modelo": "Arbol de decision",
+      "cv_f1_macro_media": 0.9265,
+      "cv_f1_macro_desv": 0.0068,
+      "test_accuracy": 0.9267,
+      "test_f1_macro": 0.9268,
+      "latencia_ms_por_lectura": 0.083,
+      "tamano_kb": 5.6
+    },
+    {
+      "modelo": "Random Forest",
+      "cv_f1_macro_media": 0.939,
+      "cv_f1_macro_desv": 0.005,
+      "test_accuracy": 0.9467,
+      "test_f1_macro": 0.9466,
+      "latencia_ms_por_lectura": 5.27,
+      "tamano_kb": 616.7
+    },
+    {
+      "modelo": "Gradient Boosting",
+      "cv_f1_macro_media": 0.9357,
+      "cv_f1_macro_desv": 0.0066,
+      "test_accuracy": 0.9527,
+      "test_f1_macro": 0.9526,
+      "latencia_ms_por_lectura": 3.287,
+      "tamano_kb": 683.8
+    }
+  ],
+  "entorno": {
+    "python": "3.13.16",
+    "sklearn": "1.9.1",
+    "numpy": "2.5.3",
+    "maquina": "x86_64",
+    "nota_latencia": "medida en la maquina donde se entreno; repetir en los mini PC"
+  }
+}
