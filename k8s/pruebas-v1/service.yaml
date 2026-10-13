@@ -1,0 +1,14 @@
+# Service usado en las pruebas del equipo (externalTrafficPolicy por defecto: Cluster).
+apiVersion: v1
+kind: Service
+metadata:
+  name: edge-infer
+  namespace: edge
+spec:
+  type: NodePort
+  selector:
+    app: edge-infer
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30080
