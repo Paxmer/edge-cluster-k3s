@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+tests/
+docs/
+k8s/
+monitoring/
+*.csv
+*.png
+*.tar
+.venv/
+artifacts/*
+!artifacts/model.joblib
