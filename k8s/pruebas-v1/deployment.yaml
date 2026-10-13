@@ -1,0 +1,44 @@
+# Manifiesto usado en las pruebas del equipo (anti-afinidad estricta, sin sondas ni tolerancias propias).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edge-infer
+  namespace: edge
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: edge-infer
+  template:
+    metadata:
+      labels:
+        app: edge-infer
+    spec:
+      nodeSelector:
+        role: worker
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - edge-infer
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: edge-infer
+          image: edge-infer:1.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
